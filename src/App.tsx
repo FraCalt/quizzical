@@ -1,26 +1,46 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Footer from "./components/Footer";
+import Header from "./components/Header";
+import Hero from "./components/Hero";
+import Start from "./components/Start";
+import circleStyles from "./style/circleStyle";
+import "./style.css";
 
-function App() {
+const App = () => {
+  const [showQuiz, setShowQuiz] = React.useState(false);
+  const [difficulty, setDifficulty] = React.useState("easy");
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app-container">
+      <div
+        className="background-circle"
+        style={{ ...circleStyles.green, margin: "25% 70%" }}
+      />
+      <div
+        className="background-circle"
+        style={{ ...circleStyles.blue, margin: "30% 40%" }}
+      />
+      <div
+        className="background-circle"
+        style={{ ...circleStyles.red, margin: "10% 5%" }}
+      />
+      <div
+        className="background-circle"
+        style={{ ...circleStyles.yellow, margin: "10% 80%" }}
+      />
+      <div className="background-circle" />
+      <Header />
+      {showQuiz ? (
+        <div className="hero-container">
+          <Hero difficulty={difficulty} />
+        </div>
+      ) : (
+        <div className="start-container">
+          <Start setShowQuiz={setShowQuiz} setDifficulty={setDifficulty} />
+        </div>
+      )}
+      <Footer />
     </div>
   );
-}
-
+};
 export default App;
